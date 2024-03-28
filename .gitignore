@@ -1,6 +1,6 @@
 .env
 .airflow
-logs/
+logs
 *.log
 logs/scheduler/
 __pycache__
