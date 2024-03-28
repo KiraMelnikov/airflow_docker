@@ -42,4 +42,14 @@ with DAG("xcom_dag", start_date=datetime(2022, 1, 1),
         bash_command="echo ''"
     )
  
-    t1 >> branch >> [t2, t3]
+    t4 = BashOperator(
+        task_id='t3',
+        bash_command="echo ''"
+    )
+ 
+    t5 = BashOperator(
+        task_id='t3',
+        bash_command="echo ''"
+    )
+ 
+    t1 >> branch >> [t2, t3] #[[t2,t4] [t3, t5]]
