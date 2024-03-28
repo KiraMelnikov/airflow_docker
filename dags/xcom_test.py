@@ -12,7 +12,7 @@ def _t2(ti):
     response = ti.xcom_pull(key='test_key', task_ids='t1')
     print(response)
 
-def branch(ti):
+def _branch(ti):
     value = ti.xcom_pull(key='test_key', task_ids='t1')
     if value == 4:
         return 't2'
@@ -29,7 +29,7 @@ with DAG("xcom_dag", start_date=datetime(2022, 1, 1),
 
     branch = BranchPythonOperator(
         task_id='branch',
-        python_callable=0
+        python_callable=_branch
     )
  
     t2 = PythonOperator(
