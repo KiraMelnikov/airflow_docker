@@ -1,4 +1,4 @@
 .env
 .airflow
-logs/
+materials/logs/
 *.log
