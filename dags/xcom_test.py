@@ -19,7 +19,7 @@ def _branch(ti):
     else:
         return 't3'
  
-with DAG("xcom_dag", start_date=datetime(2022, 1, 1), 
+with DAG("xcom_dag_test", start_date=datetime(2022, 1, 1), 
     schedule_interval='@daily', catchup=False) as dag:
  
     t1 = PythonOperator(
@@ -43,13 +43,13 @@ with DAG("xcom_dag", start_date=datetime(2022, 1, 1),
     )
  
     t4 = BashOperator(
-        task_id='t3',
+        task_id='t4',
         bash_command="echo ''",
         trigger_rule='all_success' # it has 10 rules but by default is 'all_success' 
     )
  
     t5 = BashOperator(
-        task_id='t3',
+        task_id='t5',
         bash_command="echo ''"
     )
  
