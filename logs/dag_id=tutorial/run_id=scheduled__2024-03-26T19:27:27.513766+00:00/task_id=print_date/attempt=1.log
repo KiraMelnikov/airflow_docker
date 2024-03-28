@@ -1,0 +1,14 @@
+[2024-03-28T15:23:51.150+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: tutorial.print_date scheduled__2024-03-26T19:27:27.513766+00:00 [queued]>
+[2024-03-28T15:23:51.219+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: tutorial.print_date scheduled__2024-03-26T19:27:27.513766+00:00 [queued]>
+[2024-03-28T15:23:51.224+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2024-03-28T15:23:51.225+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 2
+[2024-03-28T15:23:51.227+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2024-03-28T15:23:51.350+0000] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): print_date> on 2024-03-26 19:27:27.513766+00:00
+[2024-03-28T15:23:51.382+0000] {standard_task_runner.py:55} INFO - Started process 157 to run task
+[2024-03-28T15:23:51.427+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'tutorial', 'print_date', 'scheduled__2024-03-26T19:27:27.513766+00:00', '--job-id', '67', '--raw', '--subdir', '/home/***/.local/lib/python3.7/site-packages/***/example_dags/tutorial.py', '--cfg-path', '/tmp/tmpyf66aixu']
+[2024-03-28T15:23:51.433+0000] {standard_task_runner.py:83} INFO - Job 67: Subtask print_date
+[2024-03-28T15:23:52.724+0000] {task_command.py:376} INFO - Running <TaskInstance: tutorial.print_date scheduled__2024-03-26T19:27:27.513766+00:00 [running]> on host 1186947611cb
+[2024-03-28T15:24:02.157+0000] {local_task_job.py:164} INFO - Task exited with return code Negsignal.SIGKILL
+[2024-03-28T15:24:02.384+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
