@@ -1,4 +1,5 @@
 .env
 .airflow
-materials/logs/
+logs/
 *.log
+logs/scheduler/
