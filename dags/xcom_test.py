@@ -53,4 +53,4 @@ with DAG("xcom_dag_test", start_date=datetime(2022, 1, 1),
         bash_command="echo ''"
     )
  
-    t1 >> branch >> [t2, t3] #[[t2,t4] [t3, t5]]
+    t1 >> branch >> [t2, t3]
