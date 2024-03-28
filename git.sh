@@ -1,3 +1,3 @@
 git add .
-git commit -m 'some fix'
+git commit -m '$1'
 git push --force
