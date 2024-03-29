@@ -15,18 +15,22 @@ def _training_model(ti):
     accuracy = uniform(0.1, 10.0)
     ti.xcom_push(key='accuracy', value=accuracy)
     print(f'model\'s accuracy: {accuracy}')
+    return accuracy # optional
 
 def _choose_best_model(ti):
     key='accuracy'
-    tasks = ['training_model_a','training_model_b','training_model_c']
+    tasks = ['processing_tasks.training_model_a','processing_tasks.training_model_b','processing_tasks.training_model_c']
     result = []
     for task in tasks:
-        result.append(ti.xcom_pull(key=key, task_ids=task))
-    max_accuracy = max(result)
-    print(f'choose best model\n{max_accuracy}')
+        print(f"Task: {task}")
+        pull=ti.xcom_pull(key=key, task_ids=task)
+        print(f"Getting the pull: {pull}")
+        result.append(round(pull,3))
+    print(f"Result var: {result[-1]}")
+    # max_accuracy = result.sort()[-1]
+    # print(f'Choose best model\n{max_accuracy}')
 
 with DAG('xcom_dag', schedule_interval='@daily', default_args=default_args, catchup=False) as dag:
-
     downloading_data = BashOperator(
         task_id='downloading_data',
         bash_command='sleep 3'
