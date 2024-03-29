@@ -1,7 +1,11 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from plugins.hooks.elasticsearch.elastic_hook import ElasticHook 
 from datetime import datetime
+import sys
+from os.path import dirname, abspath
+sys.path.append(dirname(dirname(abspath(__file__))))
+
+from plugins.hooks.elasticsearch.elastic_hook import ElasticHook 
  
 def _print_es_info():
     hook=ElasticHook()
