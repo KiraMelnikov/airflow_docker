@@ -1,14 +1,14 @@
 from airflow import DAG, Dataset
 from airflow.decorators import task
-from include.datasets import MY_FILE
-
 from datetime import datetime
+from include.datasets import MY_FILE
 
 with DAG(
     dag_id = "consumer_test",
     schedule=[MY_FILE],
     start_date=datetime(2024,1,1),
-    catchup=False
+    catchup=False,
+    tags=['dataset']
 ) as dag:
 
     @task
