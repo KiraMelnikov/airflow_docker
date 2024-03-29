@@ -39,8 +39,16 @@ def chain_linear(*elements):
         raise ValueError("No dependencies were set. Did you forget to expand with `*`?")
     
 def chain(*tasks) -> None:    
-    """
+    r"""
     Given a number of tasks, builds a dependency chain.
+
+        chain(t1, [t2, t3], [t4, t5], t6)
+
+    is equivalent to::
+
+          / -> t2 -> t4 \
+        t1               -> t6
+          \ -> t3 -> t5 /
 
     This function accepts values of BaseOperator (aka tasks), EdgeModifiers (aka Labels), XComArg, TaskGroups,
     or lists containing any mix of these types (or a mix in the same list). If you want to chain between two
