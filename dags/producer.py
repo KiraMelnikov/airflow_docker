@@ -1,10 +1,8 @@
 from airflow import DAG, Dataset
 from airflow.decorators import task
-
+from include.datasets import MY_FILE
 from datetime import datetime
 
-
-my_file_1 = Dataset("s3://dag1/output_1.txt")
 
 with DAG(
     dag_id = "producer_test",
@@ -13,9 +11,9 @@ with DAG(
     catchup=False
 ) as dag:
 
-    @task(outlets=[my_file_1])
+    @task(outlets=[MY_FILE])
     def update_dataset():
-        with open(my_file_1.uri, "a+") as f:
+        with open(MY_FILE.uri, "a+") as f:
             f.write("producer update")
     
     update_dataset()
