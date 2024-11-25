@@ -1,0 +1,20 @@
+dags:
+  - name: example_dag___1
+    schedule_interval: "0 12 * * *"
+    tasks:
+      - task_id: task_1
+        type: bash
+        params:
+          bash_command: "echo 'Hello from task 1'"
+      - task_id: task_2
+        type: bash
+        params:
+          bash_command: "echo 'Hello from task 2'"
+
+  - name: example_dag___2
+    schedule_interval: "0 12 * * *"
+    tasks:
+      - task_id: task_123
+        type: bash
+        params:
+          bash_command: "echo 'Hello from task 3'"
