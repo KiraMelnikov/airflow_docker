@@ -1,11 +1,14 @@
+import os, sys
 import yaml
+# from os.path import dirname, abspath
+# sys.path.append(dirname(dirname(dirname(abspath(__file__)))))
 # from dag_generator import SharepointDAGFactory
 # from yaml_config import load_yaml_config
-# from task_factory import TaskFactory
-import os
+# from draft.task_factory import TaskFactory
 from airflow.operators.python import PythonVirtualenvOperator
 import datetime
 from airflow import DAG
+
 
 REQUIREMENTS=[
                 "deltalake",
@@ -18,7 +21,6 @@ REQUIREMENTS=[
                 "Office365-REST-Python-Client==2.5.12",
                 "openpyxl"
             ]
-
 
 
 def task_load():
