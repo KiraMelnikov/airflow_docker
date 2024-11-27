@@ -1,0 +1,11 @@
+REQUIREMENTS=[
+                "deltalake",
+                "panda",
+                "pyarrow",
+                "futures", 
+                "requests",
+                "duckdb",
+                "retry",
+                "Office365-REST-Python-Client==2.5.12",
+                "openpyxl"
+            ]
