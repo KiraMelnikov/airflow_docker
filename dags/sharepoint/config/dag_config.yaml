@@ -16,5 +16,5 @@ dags:
           sharepoint_folder_name: check_list
           sharepoint_file_name: Security Check List_results_.xlsx
         output:
-          minio_bucket: kru-readonly
+          minio_bucket: dgoit-readonly
           minio_path: sharepoint/chanel_name/table_name
