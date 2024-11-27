@@ -1,8 +1,8 @@
 import datetime
 from airflow import DAG
 from airflow.operators.python import PythonVirtualenvOperator
-from modules.task_builder import TASK_FUNCTIONS
-from utils.requirements import REQUIREMENTS
+from draft.task_builder import TASK_FUNCTIONS
+from requirements import REQUIREMENTS
 
 class SharepointDAGFactory:
     @staticmethod
@@ -13,6 +13,7 @@ class SharepointDAGFactory:
             default_args=dag_config["default_args"],
             catchup=False,
             tags=dag_config.get("tags", []),
+            start_date=datetime.datetime(2024,1,1, tzinfo=datetime.timezone.utc)
         )
         
         for task_config in dag_config["tasks"]:
@@ -22,14 +23,14 @@ class SharepointDAGFactory:
             if not task_func:
                 raise ValueError(f"Неизвестный тип задачи: {task_type}")
 
-            PythonVirtualenvOperator(
-                task_id=task_config["task_id"],
-                python_callable=task_func,
-                op_kwargs=task_config["params"],
-                requirements=REQUIREMENTS,  # Зависимости окружения
-                system_site_packages=False,
-                dag=dag,
-            )
+            with dag:
+                PythonVirtualenvOperator(
+                    task_id=task_config["task_id"],
+                    python_callable=task_func,
+                    #op_kwargs=task_config["params"],
+                    requirements=REQUIREMENTS,  # Зависимости окружения
+                    system_site_packages=False,
+                )
         
         return dag
 
