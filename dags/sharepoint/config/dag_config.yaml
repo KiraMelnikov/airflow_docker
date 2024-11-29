@@ -1,5 +1,5 @@
 dags:
-  - name: a_example_dag_1
+  - name: a_example_dag_111111
     schedule_interval: "0 12 * * *"
     default_args:
       owner: k.melnikov
@@ -10,11 +10,32 @@ dags:
     tags:
       - stores_sales
     params:
-        details: 1
-        input:
-          sharepoint_chanel: CyberSecurity
-          sharepoint_folder_name: check_list
-          sharepoint_file_name: Security Check List_results_.xlsx
-        output:
-          minio_bucket: dgoit-readonly
-          minio_path: sharepoint/chanel_name/table_name
+      details:
+        column_names: [ "project_name", "code_prm", "audit_date", "gen_score", "gen_total", "blocked", "app_score",
+                        "app_total", "blocked2", "infr_score", "infr_total", "blocked3", "audit_score", "audit_total",
+                        "blocked4", "result_score" ]
+        date_columns:
+        datetime_columns: [audit_date]
+        column_types:
+          project_name: str
+          code_prm: str
+          gen_score: float
+          gen_total: float
+          blocked: Int64
+          app_score: float
+          app_total: float
+          blocked2: Int64
+          infr_score: float
+          infr_total: float
+          blocked3: Int64
+          audit_score: float
+          audit_total: float
+          blocked4: Int64
+          result_score: float
+      input:
+        sharepoint_chanel: CyberSecurity
+        sharepoint_folder_name: check_list
+        sharepoint_file_name: Security Check List_results_.xlsx
+      output:
+        minio_bucket: dgoit-readonly
+        minio_path: sharepoint/chanel_name/table_name

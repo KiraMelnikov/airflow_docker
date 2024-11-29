@@ -11,6 +11,15 @@ class SharepointDAGFactory:
     @staticmethod
     def build_dag(dag_config):
 
+        column_names = dag_config['params']['details']['column_names']
+        column_types = dag_config['params']['details']['column_types']
+        minio_bucket = dag_config["params"]["output"]["minio_bucket"]
+        minio_path = dag_config["params"]["output"]["minio_path"]
+        sharepoint_chanel = dag_config["params"]["input"]["sharepoint_chanel"]
+        sharepoint_folder_name = dag_config["params"]["input"]["sharepoint_folder_name"]
+        sharepoint_file_name = dag_config["params"]["input"]["sharepoint_file_name"]
+        date_columns = dag_config['params']['details']['date_columns']
+        datetime_columns = dag_config['params']['details']['datetime_columns']
         team_name = dag_config["params"]["output"]["minio_bucket"].split("-")[0]
         dag_id = f'mirroring_sharepoint_{team_name}__{dag_config["name"]}'
         dag = DAG(
@@ -25,6 +34,17 @@ class SharepointDAGFactory:
         task_load_operator = PythonVirtualenvOperator(
             task_id="load_task",
             python_callable=TASK_FUNCTIONS["load"](),
+            op_kwargs={
+                "column_names": column_names,
+                "column_types": column_types,
+                "minio_bucket": minio_bucket,
+                "minio_path": minio_path,
+                "sharepoint_chanel": sharepoint_chanel,
+                "sharepoint_folder_name": sharepoint_folder_name,
+                "sharepoint_file_name": sharepoint_file_name,
+                "datetime_columns": datetime_columns,
+                "date_columns": date_columns
+            },
             requirements=REQUIREMENTS,
             system_site_packages=False,
             # pool=f'j-palefat-{team_name}',
@@ -34,6 +54,17 @@ class SharepointDAGFactory:
         task_optimize_operator = PythonVirtualenvOperator(
             task_id="optimize_task",
             python_callable=TASK_FUNCTIONS["optimize"](),
+            op_kwargs={
+                "column_names": column_names,
+                "column_types": column_types,
+                "minio_bucket": minio_bucket,
+                "minio_path": minio_path,
+                "sharepoint_chanel": sharepoint_chanel,
+                "sharepoint_folder_name": sharepoint_folder_name,
+                "sharepoint_file_name": sharepoint_file_name,
+                "datetime_columns": datetime_columns,
+                "date_columns": date_columns
+            },
             requirements=REQUIREMENTS,
             system_site_packages=False,
             # pool=f'j-palefat-{team_name}',
