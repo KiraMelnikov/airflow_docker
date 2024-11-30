@@ -46,8 +46,8 @@ def load_data_to_minio(column_names, column_types, minio_bucket, minio_path,
     current_datetime = datetime.now(tz=timezone.utc).replace(microsecond=0)
     input_details = InputDetailsLoader(
         data_source="Sharepoint",
-        login="j-dgoit-datasync@temabit.com",
-        password="5Na*MYdPwHeLgs_6m6Ab",
+        login="j-dgoit-datasync@*****",
+        password="*****",
         channel=sharepoint_channel,
         folder_name=sharepoint_folder_name,
         file_name=sharepoint_file_name,

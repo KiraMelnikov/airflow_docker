@@ -57,8 +57,8 @@ def task_load(column_names:list, column_types:dict, minio_bucket:str, minio_path
 
 
     current_datetime = datetime.now(tz=timezone.utc).replace(microsecond=0)
-    login = "j-dgoit-datasync@temabit.com"
-    password = "5Na*MYdPwHeLgs_6m6Ab"
+    login = "j-dgoit-datasync@*****"
+    password = "******"
     chanel = sharepoint_chanel
     folder_name = sharepoint_folder_name
     file_name = sharepoint_file_name
