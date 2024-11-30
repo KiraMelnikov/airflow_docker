@@ -2,15 +2,14 @@ import os, sys
 import tempfile
 import pandas as pd
 from retry import retry
-sys.path.append("/opt/airflow/dags/sharepoint/ingestor")
-from utils import get_kwarg_or_default
 from datetime import datetime, date, timezone, timedelta
 
 from office365.sharepoint.client_context import ClientContext
 from office365.runtime.auth.user_credential import UserCredential
 from office365.runtime.client_request_exception import ClientRequestException
 from office365.runtime.auth.client_credential import ClientCredential
-
+sys.path.append("/opt/airflow/dags/sharepoint/ingestor")
+from utils import get_kwarg_or_default
 
 class SharepointDataLoader:
 
@@ -18,10 +17,10 @@ class SharepointDataLoader:
 
         self.site_url = "https://fozzy365.sharepoint.com/sites/"
         self.team = "DGOFileTransfer"
-        self.chanel = kwargs["chanel"]
+        self.channel = kwargs["channel"]
         self.folder_name = kwargs["folder_name"]
         self.file_name = kwargs["file_name"]
-        self.path = "Shared Documents/{0}/{1}/{2}".format(self.chanel, self.folder_name, self.file_name)
+        self.path = "Shared Documents/{0}/{1}/{2}".format(self.channel, self.folder_name, self.file_name)
         self.folder_path = os.path.dirname(self.path)
         self.credentials = UserCredential(kwargs["login"], kwargs["password"])
         self.column_names = kwargs["column_names"]

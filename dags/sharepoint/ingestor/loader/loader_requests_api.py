@@ -1,7 +1,5 @@
 from typing import Union
 import sys
-sys.path.append("/opt/airflow/dags/sharepoint/ingestor")
-from utils import get_kwarg_or_default
 import requests
 from datetime import datetime
 from io import StringIO, BytesIO
@@ -11,6 +9,8 @@ from botocore.auth import SigV4Auth
 from botocore.awsrequest import AWSRequest
 from botocore.credentials import Credentials
 from retry import retry
+sys.path.append("/opt/airflow/dags/sharepoint/ingestor")
+from utils import get_kwarg_or_default
 
 class LoaderRequestsApi:
     def __init__(self, kwargs):
