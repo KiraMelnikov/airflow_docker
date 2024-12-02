@@ -57,7 +57,7 @@ def load_data_to_minio(column_names, column_types, minio_bucket, minio_path,
 
     loader = LoaderFactory.create_loader(input_details)
     df = loader.get_data()
-    df = df.iloc[:, :16]
+    df = df.iloc[0:, :16]
     df = df[df['project_name'].notna()].reset_index(drop=True)
     df = change_column_types(df, datetime_columns, 'datetime')
     df['_platform_ingested_at'] = current_datetime
