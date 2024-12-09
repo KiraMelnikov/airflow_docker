@@ -15,7 +15,7 @@ class SharepointDataLoader:
 
     def __init__(self, kwargs):
 
-        self.site_url = "https://fozzy365.sharepoint.com/sites/"
+        self.site_url = "https://<corp>365.sharepoint.com/sites/"
         self.team = "DGOFileTransfer"
         self.channel = kwargs["channel"]
         self.folder_name = kwargs["folder_name"]
