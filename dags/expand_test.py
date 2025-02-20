@@ -46,8 +46,8 @@ def load_data_to_minio(column_names, column_types, minio_bucket, minio_path,
     current_datetime = datetime.now(tz=timezone.utc).replace(microsecond=0)
     input_details = InputDetailsLoader(
         data_source="Sharepoint",
-        login="j-dgoit-datasync@temabit.com",
-        password="5Na*MYdPwHeLgs_6m6Ab",
+        login="••••••",
+        password="•••••8",
         channel=sharepoint_channel,
         folder_name=sharepoint_folder_name,
         file_name=sharepoint_file_name,
@@ -74,10 +74,10 @@ def sanitize_id(name):
     return name.split('.')[0].replace(' ', '_').replace('-', '_').lower()
 
 schedule = {"schedule": "0 8 * * *"}
-team_name = {"team":"dgoit"}
+team_name = {"team":"••••"}
 tags = {"tags":["sales"]}
-owner = {"owner":"k.melnikov"}
-emails = ['k.melnikov@temabit.com']
+owner = {"owner":"•••••"}
+emails = ['•••••]
 config_params = [
     {
         "column_names": [ "project_name", "code_prm", "audit_date", "gen_score", "gen_total", "blocked", "app_score",
